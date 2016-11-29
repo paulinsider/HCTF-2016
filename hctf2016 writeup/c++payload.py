@@ -1,0 +1,19 @@
+
+arr2 = [ 0x93,0xd7, 0x57, 0xb5, 0xe5, 0xb0, 0xb0, 0x52, 0x2, 0x0, 0x72, 0xb5, 0xf1, 0x80, 0x7, 0x30, 0xa, 0x30, 0x44, 0xb ]
+r={}
+for i in range(256):
+	tmp =  (i>>4) | ((i & 0xF) << 4)
+	r[tmp]= i
+for i in range(1, 20):
+	tmp = arr2[i] ^ arr2[i-1]
+	#print tmp
+	tmp2 = (i*(i+1)/2) ^ 106
+	#print tmp2
+	res = tmp2 ^ r[tmp]
+	#print r[tmp]
+	if i % 2 ==0:
+		res -= i
+	else:
+		res += i 
+	print chr(res)
+	
